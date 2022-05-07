@@ -11,6 +11,7 @@ import Bridge from "components/Bridge/Bridge";
 import { Layout } from "antd";
 import "antd/dist/antd.css";
 import "./style.css";
+import { FooterComponent } from "components/FooterComponent";
 const { Header } = Layout;
 
 const styles = {
@@ -23,6 +24,7 @@ const styles = {
     color: "#041836",
     marginTop: "130px",
     padding: "10px",
+    height: '100%'
   },
   header: {
     position: "fixed",
@@ -63,7 +65,7 @@ const App = ({ isServerInfo }) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          <div style={styles.headerRight}>
+          <div className="flex items-center justify-center space-x-4">
             <Chains />
             <Account />
           </div>
@@ -77,13 +79,14 @@ const App = ({ isServerInfo }) => {
           </Switch>
         </div>
       </Router>
+      <FooterComponent />
     </Layout>
   );
 };
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <h1>RISING SUN TOKEN</h1>
+    <h1 className="text-2xl font-bold">RISING SUN TOKEN</h1>
   </div>
 );
 

@@ -52,9 +52,12 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
-        </div>
+          <div
+            className="bg-[#00a3ff] rounded-2xl px-4 py-3 hover:bg-blue-400 cursor-pointer w-full leading-none"
+            onClick={() => setIsAuthModalVisible(true)}
+          >
+              <span className="text-white">Connect Wallet</span>
+          </div>
         <Modal
           visible={isAuthModalVisible}
           footer={null}
@@ -179,6 +182,8 @@ function Account() {
             window.localStorage.removeItem("connectorId");
             setIsModalVisible(false);
           }}
+
+          className="bg-blue-500"
         >
           Disconnect Wallet
         </Button>
