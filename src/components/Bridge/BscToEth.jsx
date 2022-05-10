@@ -1,7 +1,12 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Card, Image, Input, InputNumber, Modal } from "antd";
+import TokenBalance from "components/TokenBalance";
 import { useState } from "react";
 import { useMoralis, useChain } from 'react-moralis';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const styles = {
     
@@ -79,39 +84,39 @@ const BscToEth = () => {
 
 
   return (
-    <Card style={styles.card} className="mx-auto">
-      <div style={styles.card__networkName}>
-        <div style={{ ...styles.textAlignCenter, ...styles.greyColor }}>
-          <p>Origin Network</p>
+    <Card className="rounded-lg p-3 bg-slate-900 bg-opacity-50 border-none shadow-2xl">
+      <div className="flex items-center justify-around">
+        <div className="text-center text-[#f8583e]">
+          <p className="font-bold">Origin Network</p>
           <p>BSC Network</p>
         </div>
         <div>
-          <ArrowRightOutlined style={{ fontSize: "30px", color: "#ccc" }} />
+          <ArrowRightOutlined style={{ fontSize: "30px", color: "#f8583e" }} />
         </div>
-        <div style={{ ...styles.textAlignCenter, ...styles.greyColor }}>
-          <p>Destination Network</p>
+        <div className="text-center text-[#f8583e]">
+          <p className="font-bold">Destination Network</p>
           <p>Ethereum</p>
         </div>
       </div>
-      <div style={{ ...styles.inputDiv }}>
-        <label style={{ ...styles.greyColor }}>Amount</label>
+      <div className="mt-8">
+        <label className="text-[#f8583e]">Amount</label>
         <InputNumber
-          style={{ ...styles.input, ...styles.greyColor }}
+          className="p-2 rounded-lg w-full text-center block bg-black bg-opacity-25 text-[#f8583e] focus:border-[#f8583e] focus:outline-none border-[#f8583e] hover:border-[#f8583e] focus:shadow-none "
           size="large"
           value={amount}
           onChange={(value) => setAmount(value)}
         />
+        <TokenBalance chain={process.env.REACT_APP_CHAINID_BSC} address={process.env.REACT_APP_BSC_TOKEN_ADDRESS} setAmount={setAmount}/>
       </div>
-      <div style={{ ...styles.inputDiv }}>
+      <div className="mt-8">
         <Button
           disabled={loading}
-          type="primary"
           size="large"
           style={{ ...styles.button }}
           onClick={handleBridge}
-          className="bg-blue-500 uppercase font-bold"
+          className="bg-[#f8583e] uppercase font-bold text-white hover:bg-[#f67d5b] hover:text-white border-none"
         >
-          {loading ? "Busy" : "Bridge"}
+          {loading ? (<Spin indicator={antIcon} />) : "Bridge"}
         </Button>
       </div>
     </Card>

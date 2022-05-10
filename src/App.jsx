@@ -12,6 +12,8 @@ import { Layout } from "antd";
 import "antd/dist/antd.css";
 import "./style.css";
 import { FooterComponent } from "components/FooterComponent";
+import LogoImg from './assets/logo.png'
+
 const { Header } = Layout;
 
 const styles = {
@@ -30,7 +32,6 @@ const styles = {
     position: "fixed",
     zIndex: 1,
     width: "100%",
-    background: "#fff",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -61,9 +62,9 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   return (
-    <Layout style={{ height: "100vh", overflow: "auto" }}>
+    <Layout style={{ height: "100vh", overflow: "auto" }} className="bg-[#080910]">
       <Router>
-        <Header style={styles.header}>
+        <Header style={styles.header} className="bg-black ">
           <Logo />
           <div className="flex items-center justify-center space-x-4">
             <Chains />
@@ -86,7 +87,9 @@ const App = ({ isServerInfo }) => {
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <h1 className="text-2xl font-bold">RISING SUN TOKEN</h1>
+    <div className="w-[160px]"> 
+      <img src={LogoImg} alt="" />
+    </div>
   </div>
 );
 

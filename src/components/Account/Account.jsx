@@ -17,11 +17,10 @@ const styles = {
     alignItems: "center",
     width: "fit-content",
     borderRadius: "12px",
-    backgroundColor: "rgb(244, 244, 244)",
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#f8583e",
   },
   connector: {
     alignItems: "center",
@@ -53,7 +52,7 @@ function Account() {
     return (
       <>
           <div
-            className="bg-[#00a3ff] rounded-2xl px-4 py-3 hover:bg-blue-400 cursor-pointer w-full leading-none"
+            className="bg-[#f8583e] rounded-2xl px-4 py-3 hover:bg-[#f67d5b] cursor-pointer w-full leading-none"
             onClick={() => setIsAuthModalVisible(true)}
           >
               <span className="text-white">Connect Wallet</span>
@@ -124,7 +123,7 @@ function Account() {
       >
         Hi
       </button> */}
-      <div style={styles.account} onClick={() => setIsModalVisible(true)}>
+      <div style={styles.account}  onClick={() => setIsModalVisible(true)}>
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}
         </p>

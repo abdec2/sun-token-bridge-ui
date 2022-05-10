@@ -15,7 +15,7 @@ const styles = {
     padding: "0 10px",
   },
   button: {
-    border: "2px solid rgb(231, 234, 243)",
+    // border: "2px solid rgb(231, 234, 243)",
     borderRadius: "12px",
   },
 };
@@ -104,9 +104,9 @@ function Chains() {
   };
 
   const menu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu onClick={handleMenuClick} className="bg-slate-900">
       {menuItems.map((item) => (
-        <Menu.Item key={item.key} icon={item.icon} style={styles.item}>
+        <Menu.Item key={item.key} icon={item.icon} style={styles.item} className="text-[#f8583e] hover:bg-slate-700">
           <span style={{ marginLeft: "5px" }}>{item.value}</span>
         </Menu.Item>
       ))}
@@ -116,8 +116,8 @@ function Chains() {
   if (!chainId || !isAuthenticated) return null;
 
   return (
-    <div>
-      <Dropdown overlay={menu} trigger={["click"]}>
+    <div className="">
+      <Dropdown overlay={menu} trigger={["click"]} className="text-[#f8583e] hover:bg-slate-900 active:bg-slate-900 focus:bg-slate-900 border-none">
         <Button
           key={selected?.key}
           icon={selected?.icon}
