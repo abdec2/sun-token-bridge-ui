@@ -1,7 +1,7 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Card, Image, Input, InputNumber, Modal } from "antd";
 import TokenBalance from "components/TokenBalance";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMoralis, useChain } from 'react-moralis';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -52,6 +52,7 @@ const BscToEth = () => {
     const { chainId, chain } = useChain();
     const { Moralis } = useMoralis();
     const [loading, setLoading] = useState(false);
+    const [cRate, setCRate] = useState(0);
 
     const handleBridge = async (e) => {
         setLoading(true)
@@ -82,6 +83,16 @@ const BscToEth = () => {
         }
     }
 
+    const setRate = async () => {
+      const cvRate = await Moralis.Cloud.run('cr_bsc_eth', {});
+      setCRate(cvRate);
+    }
+  
+    useEffect(()=>{
+      setRate()
+      console.log(cRate)
+    }, [cRate, chain])
+
 
   return (
     <Card className="rounded-lg p-3 bg-slate-900 bg-opacity-50 border-none shadow-2xl">
@@ -107,6 +118,17 @@ const BscToEth = () => {
           onChange={(value) => setAmount(value)}
         />
         <TokenBalance chain={process.env.REACT_APP_CHAINID_BSC} address={process.env.REACT_APP_BSC_TOKEN_ADDRESS} setAmount={setAmount}/>
+
+        <div className="mt-4">
+          <label className="text-[#f8583e]">Rate</label>
+          <Input
+            className="p-2 rounded-lg w-full block bg-black bg-opacity-25 text-[#f8583e] focus:border-[#f8583e] focus:outline-none border-[#f8583e] hover:border-[#f8583e] focus:shadow-none "
+            size="large"
+            disabled
+            style={{background: "black", color: "grey"}}
+            value={cRate}
+          />
+        </div>
       </div>
       <div className="mt-8">
         <Button
